@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 6 Computer Syllabus</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load Noto Sans Devanagari for Hindi -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for Hindi text */
+        .hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+        /* Page transition helper */
+        .page {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .page.active {
+            display: block; /* Shown by JS */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Active tab style */
+        .tab-btn.active {
+            border-bottom-color: #2563eb; /* border-blue-600 */
+            color: #2563eb; /* text-blue-600 */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- 
+      APP STRUCTURE:
+      - page-landing: The welcome screen
+      - page-main-menu: Shows the 6 Units
+      - page-unit-detail: Shows topics for a selected unit
+      - page-topic-explanation: Shows the content for a selected topic
+    -->
+
+    <!-- ===== Page 1: Landing Page ===== -->
+    <div id="page-landing" class="page active flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-indigo-700 text-white p-8">
+        <svg class="w-24 h-24 mb-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+        <h1 class="text-4xl md:text-5xl font-bold text-center mb-4">Welcome to Class 6 Computers</h1>
+        <p class="text-xl md:text-2xl text-blue-100 text-center mb-10">कक्षा 6 कंप्यूटर में आपका स्वागत है</p>
+        <button id="start-btn" class="text-indigo-700 bg-white font-bold py-3 px-10 rounded-full shadow-lg text-lg transform transition duration-300 hover:scale-105 hover:bg-gray-50">
+            Start Learning (शुरू करें)
+        </button>
+    </div>
+
+    <!-- ===== Page 2: Main Menu (Units) ===== -->
+    <div id="page-main-menu" class="page">
+        <header class="bg-white shadow-md p-4 sticky top-0 z-10">
+            <h1 class="text-2xl font-bold text-center text-gray-800">Computer Syllabus</h1>
+        </header>
+        <div class="p-4 md:p-8">
+            <h2 class="text-xl font-semibold text-gray-700 mb-6">Please select a unit to begin:</h2>
+            <!-- Grid for Units -->
+            <div id="main-menu-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Unit cards will be populated by JS, but we can hardcode them since they are static -->
+                
+                <!-- Unit 1 Card -->
+                <button class="unit-card text-left p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-unit-id="unit-1">
+                    <span class="block text-sm font-semibold text-blue-600">Unit 1</span>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Computer Basics-I</h3>
+                    <p class="hindi text-lg font-semibold text-gray-700">कंप्यूटर की मूल बातें-I</p>
+                    <p class="text-gray-500 mt-3">Introduction, Parts, Generations, and Lab rules.</p>
+                </button>
+                
+                <!-- Unit 2 Card -->
+                <button class="unit-card text-left p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-unit-id="unit-2">
+                    <span class="block text-sm font-semibold text-green-600">Unit 2</span>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Desktop & Peripherals</h3>
+                    <p class="hindi text-lg font-semibold text-gray-700">डेस्कटॉप और पेरिफेरल्स</p>
+                    <p class="text-gray-500 mt-3">Desktop, Icons, I/O Devices, Memory, Hardware/Software.</p>
+                </button>
+                
+                <!-- Unit 3 Card -->
+                <button class="unit-card text-left p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-unit-id="unit-3">
+                    <span class="block text-sm font-semibold text-yellow-600">Unit 3</span>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Using Paint Brush</h3>
+                    <p class="hindi text-lg font-semibold text-gray-700">पेंट ब्रश का उपयोग</p>
+                    <p class="text-gray-500 mt-3">Drawing tools, selection tools, and view options.</p>
+                </button>
+                
+                <!-- Unit 4 Card -->
+                <button class="unit-card text-left p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-unit-id="unit-4">
+                    <span class="block text-sm font-semibold text-red-600">Unit 4</span>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Word Processor</h3>
+                    <p class="hindi text-lg font-semibold text-gray-700">वर्ड प्रोसेसर</p>
+                    <p class="text-gray-500 mt-3">Creating, editing, formatting documents, and Hindi typing.</p>
+                </button>
+                
+                <!-- Unit 5 Card -->
+                <button class="unit-card text-left p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-unit-id="unit-5">
+                    <span class="block text-sm font-semibold text-purple-600">Unit 5</span>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Internet</h3>
+                    <p class="hindi text-lg font-semibold text-gray-700">इंटरनेट</p>
+                    <p class="text-gray-500 mt-3">What is Internet, requirements, and search engines.</p>
+                </button>
+                
+                <!-- Unit 6 Card -->
+                <button class="unit-card text-left p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-unit-id="unit-6">
+                    <span class="block text-sm font-semibold text-teal-600">Unit 6</span>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Application Software</h3>
+                    <p class="hindi text-lg font-semibold text-gray-700">एप्लीकेशन सॉफ्टवेयर</p>
+                    <p class="text-gray-500 mt-3">Spreadsheets (Excel) and Presentations (PowerPoint).</p>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Page 3: Unit Detail (Topics) ===== -->
+    <div id="page-unit-detail" class="page">
+        <header class="bg-white shadow-md p-4 sticky top-0 z-10 flex items-center">
+            <button id="back-to-main-menu" class="p-2 rounded-full hover:bg-gray-200 mr-2">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <div class="flex-1 text-center">
+                <h1 id="unit-detail-title-en" class="text-xl font-bold text-gray-800"></h1>
+                <p id="unit-detail-title-hi" class="hindi text-lg font-semibold text-gray-600"></p>
+            </div>
+        </header>
+        <div class="p-4 md:p-8">
+            <h2 class="text-xl font-semibold text-gray-700 mb-6">Please select a topic:</h2>
+            <!-- List of topics for the unit -->
+            <div id="unit-detail-list" class="flex flex-col gap-4">
+                <!-- Topic cards will be dynamically inserted here by JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== Page 4: Topic Explanation ===== -->
+    <div id="page-topic-explanation" class="page">
+        <header class="bg-white shadow-md p-4 sticky top-0 z-10 flex items-center">
+            <button id="back-to-unit-detail" class="p-2 rounded-full hover:bg-gray-200 mr-2">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <div class="flex-1 text-center overflow-hidden">
+                <h1 id="topic-explanation-title-en" class="text-xl font-bold text-gray-800 truncate"></h1>
+                <p id="topic-explanation-title-hi" class="hindi text-lg font-semibold text-gray-600 truncate"></p>
+            </div>
+        </header>
+        
+        <!-- Language Tabs -->
+        <div class="sticky top-16 bg-white border-b border-gray-200 z-10">
+            <nav class="flex justify-center -mb-px">
+                <button class="tab-btn active py-3 px-6 border-b-2 border-transparent text-gray-500" data-lang="en">
+                    English
+                </button>
+                <button class="tab-btn py-3 px-6 border-b-2 border-transparent text-gray-500" data-lang="hi">
+                    <span class="hindi">हिंदी</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div class="p-4 md:p-8">
+            <div id="content-en" class="content-pane active prose prose-lg max-w-none">
+                <!-- English content goes here -->
+            </div>
+            <div id="content-hi" class="content-pane hidden prose prose-lg max-w-none">
+                <!-- Hindi content goes here -->
+            </div>
+        </div>
+
+        <!-- === Gemini LLM Feature: Ask a Tutor === -->
+        <div class="p-4 md:p-8 bg-indigo-50 rounded-b-xl border-t border-indigo-200">
+            <h3 class="text-xl font-bold text-indigo-700 mb-4 flex items-center">
+                Ask the Computer Tutor ✨
+            </h3>
+            <p class="text-sm text-gray-600 mb-4">
+                Have a follow-up question about this topic? Ask anything you want! (E.g., "What is a Transistor?")
+            </p>
+            
+            <div class="flex flex-col space-y-4">
+                <textarea id="gemini-query" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 resize-none" rows="2" placeholder="Type your question here..."></textarea>
+                
+                <button id="ask-gemini-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Explain it simply ✨
+                </button>
+            </div>
+            
+            <div id="gemini-response-area" class="mt-6 p-4 bg-white border border-indigo-300 rounded-lg shadow-inner hidden">
+                <p id="gemini-response-text" class="text-gray-800"></p>
+                <div id="gemini-loading" class="text-indigo-600 text-center hidden">
+                    <svg class="animate-spin h-5 w-5 mr-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Thinking of the best way to explain this...
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========== JAVASCRIPT =========== -->
+    <script>
+        // --- DATABASE for the App ---
+        // Contains all syllabus content
+        const appData = {
+            "unit-1": {
+                title: "Computer Basics-I",
+                hindiTitle: "कंप्यूटर की मूल बातें-I",
+                topics: [
+                    { 
+                        slug: "intro", 
+                        title: "Introduction to computer", 
+                        hindiTitle: "कंप्यूटर का परिचय",
+                        content: {
+                            english: `<p>A computer is like a magic box that follows your instructions. It's like a super-fast calculator, a notebook, a TV, and a gaming machine all in one!</p>
+                                      <p><strong>Real Example:</strong> You use it for your school homework, to play games, or to watch videos on YouTube.</p>`,
+                            hindi: `<p class="hindi">कंप्यूटर एक जादुई बक्से की तरह है जो आपके निर्देशों का पालन करता है। यह एक सुपर-फास्ट कैलकुलेटर, एक नोटबुक, एक टीवी और एक गेमिंग मशीन सब एक में है!</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> आप इसका उपयोग अपने स्कूल के होमवर्क के लिए, गेम खेलने के लिए, या YouTube पर वीडियो देखने के लिए करते हैं।</p>`
+                        }
+                    },
+                    { 
+                        slug: "start-shutdown", 
+                        title: "Starting and Shutting down the computer",
+                        hindiTitle: "कंप्यूटर शुरू करना और बंद करना",
+                        content: {
+                            english: `<p><strong>Starting (Waking it up):</strong></p>
+                                      <ol>
+                                          <li>Press the main power button (on the wall).</li>
+                                          <li>Press the big power button on the CPU Cabinet (the 'box').</li>
+                                          <li>Press the power button on the Monitor (the 'screen').</li>
+                                      </ol>
+                                      <p><strong>Shutting Down (Telling it goodnight):</strong></p>
+                                      <ol>
+                                          <li>Click the 'Start' button (Windows icon).</li>
+                                          <li>Click the 'Power' icon.</li>
+                                          <li>Select 'Shut Down'.</li>
+                                      </ol>
+                                      <p><strong>Important:</strong> Never just pull the plug! That's like waking someone up by shouting. Always 'Shut Down' politely so it can save its work.</p>`,
+                            hindi: `<p class="hindi"><strong>शुरू करना (इसे जगाना):</strong></p>
+                                    <ol class="hindi">
+                                        <li>मुख्य पावर बटन (दीवार पर) दबाएं।</li>
+                                        <li>सीपीयू कैबिनेट ('बॉक्स') पर बड़ा पावर बटन दबाएं।</li>
+                                        <li>मॉनिटर ('स्क्रीन') पर पावर बटन दबाएं।</li>
+                                    </ol>
+                                    <p class="hindi"><strong>बंद करना (इसे शुभरात्रि कहना):</strong></p>
+                                    <ol class="hindi">
+                                        <li>'स्टार्ट' बटन (विंडोज आइकन) पर क्लिक करें।</li>
+                                        <li>'पावर' आइकन पर क्लिक करें।</li>
+                                        <li>'शट डाउन' चुनें।</li>
+                                    </ol>
+                                    <p class="hindi"><strong>महत्वपूर्ण:</strong> कभी भी सीधे प्लग न खींचें! यह किसी को चिल्लाकर जगाने जैसा है। हमेशा शालीनता से 'शट डाउन' करें ताकि यह अपना काम सहेज सके।</p>`
+                        }
+                    },
+                    { 
+                        slug: "parts", 
+                        title: "Identify the Parts of computer and their functionality",
+                        hindiTitle: "कंप्यूटर के भागों और उनकी कार्यक्षमता को पहचानें",
+                        content: {
+                            english: `<p>A computer has four main parts, just like your body:</p>
+                                      <ul>
+                                          <li><strong>Monitor (The Face):</strong> This is the screen that *shows* you everything (videos, games, homework).</li>
+                                          <li><strong>CPU Cabinet (The Brain):</strong> This is the big box that does all the *thinking* and processing.</li>
+                                          <li><strong>Keyboard (The Voice):</strong> This is how you *talk* to the computer by typing letters and numbers.</li>
+                                          <li><strong>Mouse (The Hand):</strong> This is how you *point* and *click* on things on the screen.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">आपके शरीर की तरह ही कंप्यूटर के चार मुख्य भाग होते हैं:</p>
+                                    <ul class="hindi">
+                                        <li><strong>मॉनिटर (चेहरा):</strong> यह वह स्क्रीन है जो आपको सब कुछ *दिखाती* है (वीडियो, गेम, होमवर्क)।</li>
+                                        <li><strong>सीपीयू कैबिनेट (मस्तिष्क):</strong> यह वह बड़ा बक्सा है जो सभी *सोच* और प्रोसेसिंग का काम करता है।</li>
+                                        <li><strong>कीबोर्ड (आवाज़):</strong> इस तरह आप अक्षर और नंबर टाइप करके कंप्यूटर से *बात* करते हैं।</li>
+                                        <li><strong>माउस (हाथ):</strong> इस तरह आप स्क्रीन पर चीज़ों को *इंगित* और *क्लिक* करते हैं।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "keyboard-keys",
+                        title: "Identify the Keys of Keyboard",
+                        hindiTitle: "कीबोर्ड की कुंजियों (Keys) को पहचानें",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Alphabet Keys:</strong> A-Z, for typing your name or writing stories.</li>
+                                <li><strong>Number Keys:</strong> 0-9, for doing math homework.</li>
+                                <li><strong>Spacebar:</strong> The long key at the bottom, used to make spaces between words.</li>
+                                <li><strong>Enter Key:</strong> To go to the next line (like in a WhatsApp chat).</li>
+                                <li><strong>Backspace Key:</strong> To erase and fix your mistakes.</li>
+                            </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>अक्षर कुंजियाँ (Alphabet Keys):</strong> A-Z, अपना नाम टाइप करने या कहानियाँ लिखने के लिए।</li>
+                                <li><strong>नंबर कुंजियाँ (Number Keys):</strong> 0-9, गणित का होमवर्क करने के लिए।</li>
+                                <li><strong>स्पेसबार:</strong> सबसे नीचे लंबी कुंजी, शब्दों के बीच जगह बनाने के लिए।</li>
+                                <li><strong>एंटर कुंजी (Enter Key):</strong> अगली लाइन पर जाने के लिए (जैसे व्हाट्सएप चैट में)।</li>
+                                <li><strong>बैकस्पेस कुंजी (Backspace Key):</strong> अपनी गलतियों को मिटाने और ठीक करने के लिए।</li>
+                            </ul>`
+                        }
+                    },
+                    {
+                        slug: "mouse-buttons",
+                        title: "Identify the Mouse and its Buttons",
+                        hindiTitle: "माउस और उसके बटनों को पहचानें",
+                        content: {
+                            english: `<ul>
+                                          <li><strong>Left Button (The "Do" Button):</strong> This is the main button. You 'click' it once to select something. You 'double-click' (click twice fast) to open a game or folder.</li>
+                                          <li><strong>Right Button (The "Options" Button):</strong> This opens a secret menu with options like 'Copy', 'Paste', or 'Rename'.</li>
+                                          <li><strong>Scroll Wheel:</strong> The wheel in the middle. You use it to move up and down a long website, like scrolling through YouTube videos.</li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                        <li><strong>लेफ्ट बटन ("करने" वाला बटन):</strong> यह मुख्य बटन है। आप किसी चीज़ को चुनने के लिए इसे एक बार 'क्लिक' करते हैं। आप किसी गेम या फ़ोल्डर को खोलने के लिए 'डबल-क्लिक' (दो बार तेज़ी से क्लिक) करते हैं।</li>
+                                        <li><strong>राइट बटन ("विकल्प" बटन):</strong> यह 'कॉपी', 'पेस्ट', या 'नाम बदलें' जैसे विकल्पों के साथ एक गुप्त मेनू खोलता है।</li>
+                                        <li><strong>स्क्रॉल व्हील:</strong> बीच में पहिया। आप इसका उपयोग एक लंबी वेबसाइट पर ऊपर और नीचे जाने के लिए करते हैं, जैसे YouTube वीडियो के माध्यम से स्क्रॉल करना।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "precautions",
+                        title: "Precautions for opening and closing computers",
+                        hindiTitle: "कंप्यूटर खोलने और बंद करने में सावधानियां",
+                        content: {
+                            english: `<p>The most important rule: <strong>Always use the 'Shut Down' option from the Start Menu.</strong></p>
+                                      <p><strong>Real Example:</strong> Never turning off the power directly is like saving your game before you quit. If you just turn off the power, the computer can get confused and might lose your files or break, just like losing your game progress!</p>`,
+                            hindi: `<p class="hindi">सबसे महत्वपूर्ण नियम: <strong>हमेशा स्टार्ट मेनू से 'शट डाउन' विकल्प का उपयोग करें।</strong></p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> कभी भी सीधे पावर बंद न करना वैसा ही है जैसे आप गेम छोड़ने से पहले उसे सेव करते हैं। यदि आप बस पावर बंद कर देते हैं, तो कंप्यूटर भ्रमित हो सकता है और आपकी फ़ाइलें खो सकता है या टूट सकता है, ठीक वैसे ही जैसे आप अपनी गेम की प्रगति खो देते हैं!</p>`
+                        }
+                    },
+                    {
+                        slug: "dos-donts",
+                        title: "Do’s and Don’ts of Computer Lab",
+                        hindiTitle: "कंप्यूटर लैब के 'क्या करें' और 'क्या न करें'",
+                        content: {
+                            english: `<p><strong>Do's (What you SHOULD do):</strong></p>
+                                      <ul>
+                                          <li>Keep your hands clean and dry before touching anything.</li>
+                                          <li>Enter and leave the lab quietly.</li>
+                                          <li>Listen to your teacher!</li>
+                                      </ul>
+                                      <p><strong>Don'ts (What you should NOT do):</strong></p>
+                                      <ul>
+                                          <li>No food or water! Spilling water can permanently break the keyboard or computer.</li>
+                                          <li>Don't pull any wires or cables.</li>
+                                          <li>Don't run or shout.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi"><strong>क्या करें (Do's):</strong></p>
+                                    <ul class="hindi">
+                                        <li>किसी भी चीज़ को छूने से पहले अपने हाथ साफ और सूखे रखें।</li>
+                                        <li>लैब में चुपचाप प्रवेश करें और बाहर निकलें।</li>
+                                        <li>अपने शिक्षक की बात सुनें!</li>
+                                    </ul>
+                                    <p class="hindi"><strong>क्या न करें (Don'ts):</strong></p>
+                                    <ul class="hindi">
+                                        <li>कोई खाना या पानी नहीं! पानी गिरने से कीबोर्ड या कंप्यूटर स्थायी रूप से खराब हो सकता है।</li>
+                                        <li>किसी भी तार या केबल को न खींचें।</li>
+                                        <li>दौड़ें या चिल्लाएं नहीं।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "features",
+                        title: "Feature of the Computers",
+                        hindiTitle: "कंप्यूटर की विशेषताएं",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Speed:</strong> It's super-fast. It can solve a giant math problem in one second.</li>
+                                <li><strong>Storage:</strong> It can remember *everything*. It can store thousands of photos, songs, and movies.</li>
+                                <li><strong>Doesn't get tired (Diligence):</strong> It can do the same boring job 1,000 times (like copy-pasting) and will never get tired or make a mistake.</li>
+                                <li><strong>Does many things (Versatility):</strong> You can use the *same* computer to draw, write, do math, and play games.</li>
+                            </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>गति (Speed):</strong> यह बहुत तेज़ है। यह एक सेकंड में एक विशाल गणित की समस्या को हल कर सकता है।</li>
+                                <li><strong>भंडारण (Storage):</strong> यह *सब कुछ* याद रख सकता है। यह हजारों तस्वीरें, गाने और फिल्में स्टोर कर सकता है।</li>
+                                <li><strong>थकता नहीं है (Diligence):</strong> यह एक ही उबाऊ काम 1,000 बार (जैसे कॉपी-पेस्ट) कर सकता है और कभी थकेगा नहीं या गलती नहीं करेगा।</li>
+                                <li><strong>कई काम करता है (Versatility):</strong> आप *एक ही* कंप्यूटर का उपयोग चित्र बनाने, लिखने, गणित करने और गेम खेलने के लिए कर सकते हैं।</li>
+                            </ul>`
+                        }
+                    },
+                    {
+                        slug: "limitations",
+                        title: "Strengths and limitation of the computers",
+                        hindiTitle: "कंप्यूटर की ताकत और सीमाएं",
+                        content: {
+                            english: `<p><strong>Strengths:</strong> It's fast, remembers a lot, and never gets tired.</p>
+                                      <p><strong>Limitations (What it CAN'T do):</strong></p>
+                                      <ul>
+                                          <li><strong>It's not smart:</strong> A computer is a "dumb" machine. It only follows instructions. It cannot guess what you want or have its own ideas.</li>
+                                          <li><strong>No feelings:</strong> It doesn't get happy, sad, or angry.</li>
+                                          <li><strong>Needs electricity:</strong> No power, no computer!</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi"><strong>ताकत (Strengths):</strong> यह तेज़ है, बहुत कुछ याद रखता है, और कभी थकता नहीं है।</p>
+                                    <p class="hindi"><strong>सीमाएं (Limitations) (यह क्या नहीं कर सकता):</strong></p>
+                                    <ul class="hindi">
+                                        <li><strong>यह स्मार्ट नहीं है:</strong> कंप्यूटर एक "मूर्ख" मशीन है। यह केवल निर्देशों का पालन करता है। यह अनुमान नहीं लगा सकता कि आप क्या चाहते हैं या इसके अपने विचार नहीं हो सकते।</li>
+                                        <li><strong>कोई भावना नहीं:</strong> यह खुश, दुखी या क्रोधित नहीं होता।</li>
+                                        <li><strong>बिजली चाहिए:</strong> बिजली नहीं, तो कंप्यूटर नहीं!</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "generations",
+                        title: "Understanding the Generation of the computers",
+                        hindiTitle: "कंप्यूटर की पीढ़ियों को समझना",
+                        content: {
+                            english: `<p>Computers have become smaller and more powerful over time.</p>
+                                      <ul>
+                                          <li><strong>1st Gen (Long ago):</strong> As big as a whole room! Used 'Vacuum Tubes'.</li>
+                                          <li><strong>2nd & 3rd Gen:</strong> Got smaller, using 'Transistors' and 'ICs'.</li>
+                                          <li><strong>4th Gen (Now):</strong> The personal computers (PCs) and laptops we use today, thanks to the 'Microprocessor' (a tiny brain).</li>
+                                          <li><strong>5th Gen (The Future):</strong> Computers that can think and learn, like 'Artificial Intelligence'. <strong>Real Example:</strong> Google Assistant, Siri, or Alexa are part of this.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">कंप्यूटर समय के साथ छोटे और अधिक शक्तिशाली हो गए हैं।</p>
+                                    <ul class="hindi">
+                                        <li><strong>पहली पीढ़ी (बहुत पहले):</strong> एक पूरे कमरे जितनी बड़ी! 'वैक्यूम ट्यूब' का इस्तेमाल किया।</li>
+                                        <li><strong>दूसरी और तीसरी पीढ़ी:</strong> 'ट्रांजिस्टर' और 'आईसी' का उपयोग करके छोटे हो गए।</li>
+                                        <li><strong>चौथी पीढ़ी (अब):</strong> 'माइक्रोप्रोसेसर' (एक छोटा मस्तिष्क) की बदौलत आज हम जिन पर्सनल कंप्यूटर (पीसी) और लैपटॉप का उपयोग करते हैं।</li>
+                                        <li><strong>पांचवीं पीढ़ी (भविष्य):</strong> कंप्यूटर जो सोच और सीख सकते हैं, जैसे 'आर्टिफिशियल इंटेलिजेंस'। <strong>असली उदाहरण:</strong> गूगल असिस्टेंट, सिरी, या एलेक्सा इसका हिस्सा हैं।</li>
+                                    </ul>`
+                        }
+                    }
+                ]
+            },
+            "unit-2": {
+                title: "Desktop and Computer peripherals",
+                hindiTitle: "डेस्कटॉप और कंप्यूटर पेरिफेरल्स",
+                topics: [
+                    {
+                        slug: "desktop",
+                        title: "About Desktop/Screen",
+                        hindiTitle: "डेस्कटॉप/स्क्रीन के बारे में",
+                        content: {
+                            english: `<p>The <strong>Desktop</strong> is the main screen you see when your computer starts. Think of it as your *real* desk.</p>
+                                      <p>The background picture is your <strong>Wallpaper</strong>. The small pictures on it are your <strong>Icons</strong> (which are like your books, pens, and games on your desk).</p>`,
+                            hindi: `<p class="hindi"><strong>डेस्कटॉप</strong> वह मुख्य स्क्रीन है जिसे आप कंप्यूटर शुरू होने पर देखते हैं। इसे अपने *असली* डेस्क के रूप में सोचें।</p>
+                                    <p class="hindi">पृष्ठभूमि की तस्वीर आपका <strong>वॉलपेपर</strong> है। इस पर छोटी तस्वीरें आपके <strong>आइकन</strong> हैं (जो आपकी डेस्क पर आपकी किताबों, कलमों और खेलों की तरह हैं)।</p>`
+                        }
+                    },
+                    {
+                        slug: "icons-taskbar",
+                        title: "Icons, Start button and Task bar",
+                        hindiTitle: "आइकन, स्टार्ट बटन और टास्क बार",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Icons:</strong> Small pictures you click to open programs. <strong>Example:</strong> The Google Chrome icon opens the internet.</li>
+                                <li><strong>Start Button:</strong> The Windows logo in the corner. It's the "main menu" for everything on your computer (all apps, settings, and the power button).</li>
+                                <li><strong>Taskbar:</strong> The long bar at the bottom. It shows you which programs are *already open*.</li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>आइकन:</strong> छोटी तस्वीरें जिन पर आप प्रोग्राम खोलने के लिए क्लिक करते हैं। <strong>उदाहरण:</strong> गूगल क्रोम आइकन इंटरनेट खोलता है।</li>
+                                <li><strong>स्टार्ट बटन:</strong> कोने में विंडोज लोगो। यह आपके कंप्यूटर पर सब कुछ (सभी ऐप, सेटिंग्स और पावर बटन) के लिए "मुख्य मेनू" है।</li>
+                                <li><strong>टास्कबार:</strong> सबसे नीचे लंबी पट्टी। यह आपको दिखाता है कि कौन से प्रोग्राम *पहले से खुले* हैं।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "mycomputer-recyclebin",
+                        title: "My Computer, Recycle bin",
+                        hindiTitle: "माई कंप्यूटर, रीसायकल बिन",
+                        content: {
+                            english: `<ul>
+                                <li><strong>My Computer (or This PC):</strong> This is your computer's main filing cabinet. Clicking it shows you all your files, folders, and drives (like your Pen Drive).</li>
+                                <li><strong>Recycle Bin:</strong> This is the computer's dustbin! When you delete a file, it goes here *just in case* you made a mistake. You can get it back, or 'Empty' the bin to delete it forever.</li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>माई कंप्यूटर (या This PC):</strong> यह आपके कंप्यूटर की मुख्य फाइलिंग कैबिनेट है। इस पर क्लिक करने से आपको आपकी सभी फाइलें, फ़ोल्डर और ड्राइव (जैसे आपकी पेन ड्राइव) दिखाई देती हैं।</li>
+                                <li><strong>रीसायकल बिन:</strong> यह कंप्यूटर का कूड़ेदान है! जब आप किसी फ़ाइल को हटाते हैं, तो वह *बस मामले में* यहाँ चली जाती है यदि आपने कोई गलती की हो। आप इसे वापस पा सकते हैं, या इसे हमेशा के लिए हटाने के लिए बिन को 'खाली' कर सकते हैं।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "io-devices",
+                        title: "Input and Output devices",
+                        hindiTitle: "इनपुट और आउटपुट डिवाइस",
+                        content: {
+                            english: `<p>This is simple: "In" means putting data *in*, "Out" means getting data *out*.</p>
+                                      <p><strong>Input Devices (Giving orders):</strong></p>
+                                      <ul>
+                                        <li><strong>Keyboard & Mouse:</strong> You give text and click commands.</li>
+                                        <li><strong>Microphone:</strong> You give your *voice* in.</li>
+                                      </ul>
+                                      <p><strong>Output Devices (Seeing results):</strong></p>
+                                      <ul>
+                                        <li><strong>Monitor:</strong> You get *pictures* out.</li>
+                                        <li><strong>Speakers/Headphones:</strong> You get *sound* out.</li>
+                                        <li><strong>Printer:</strong> You get *paper* out.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">यह सरल है: "इन" का मतलब है डेटा *अंदर* डालना, "आउट" का मतलब है डेटा *बाहर* निकालना।</p>
+                                    <p class="hindi"><strong>इनपुट डिवाइस (आदेश देना):</strong></p>
+                                    <ul class="hindi">
+                                        <li><strong>कीबोर्ड और माउस:</strong> आप टेक्स्ट और क्लिक कमांड देते हैं।</li>
+                                        <li><strong>माइक्रोफोन:</strong> आप अपनी *आवाज़* अंदर देते हैं।</li>
+                                    </ul>
+                                    <p class="hindi"><strong>आउटपुट डिवाइस (परिणाम देखना):</strong></p>
+                                    <ul class="hindi">
+                                        <li><strong>मॉनिटर:</strong> आपको *तस्वीरें* बाहर मिलती हैं।</li>
+                                        <li><strong>स्पीकर/हेडफोन:</strong> आपको *आवाज़* बाहर मिलती है।</li>
+                                        <li><strong>प्रिंटर:</strong> आपको *कागज* बाहर मिलता है।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "memory",
+                        title: "Memory devices (Primary and Secondary)",
+                        hindiTitle: "मेमोरी डिवाइस (प्राथमिक और माध्यमिक)",
+                        content: {
+                            english: `<p>A computer has two types of memory:</p>
+                                      <p><strong>1. RAM (Your Desk):</strong></p>
+                                      <p>This is *temporary* working memory. It's like your school desk. When you open a game, you put it on your desk. When you turn the computer off, the desk is cleared. RAM is very *fast*.</p>
+                                      
+                                      <p><strong>2. Storage (Your School Bag):</strong></p>
+                                      <p>This is *permanent* memory. It's where you *save* your files. It stays there even when the computer is off. *Examples:* Hard Disk, Pen Drive. Storage is *slower* than RAM, but it holds much more.</p>`,
+                            hindi: `<p class="hindi">एक कंप्यूटर में दो प्रकार की मेमोरी होती है:</p>
+                                    <p class="hindi"><strong>1. रैम (RAM) (आपकी डेस्क):</strong></p>
+                                    <p class="hindi">यह *अस्थायी* वर्किंग मेमोरी है। यह आपके स्कूल डेस्क की तरह है। जब आप कोई गेम खोलते हैं, तो आप उसे अपनी डेस्क पर रखते हैं। जब आप कंप्यूटर बंद करते हैं, तो डेस्क साफ हो जाती है। रैम बहुत *तेज़* होती है।</p>
+                                    
+                                    <p class="hindi"><strong>2. स्टोरेज (आपका स्कूल बैग):</strong></p>
+                                    <p class="hindi">यह *स्थायी* मेमोरी है। यह वह जगह है जहाँ आप अपनी फ़ाइलों को *सहेजते* हैं। यह कंप्यूटर बंद होने पर भी वहीं रहती है। *उदाहरण:* हार्ड डिस्क, पेन ड्राइव। स्टोरेज रैम की तुलना में *धीमा* होता है, लेकिन इसमें बहुत अधिक जगह होती है।</p>`
+                        }
+                    },
+                    {
+                        slug: "cpu",
+                        title: "CPU (Central Processing Unit)",
+                        hindiTitle: "सीपीयू (सेंट्रल प्रोसेसिंग यूनिट)",
+                        content: {
+                            english: `<p>The <strong>CPU</strong> is the <strong>Brain of the Computer</strong>. It's a small chip, but it does ALL the thinking, calculations, and work.</p>
+                                      <p><strong>Real Example:</strong> A faster CPU means a faster computer. It's why some computers are better for gaming (they can "think" faster).</p>`,
+                            hindi: `<p class="hindi"><strong>सीपीयू</strong> <strong>कंप्यूटर का मस्तिष्क</strong> होता है। यह एक छोटी चिप है, लेकिन यह सभी सोच, गणना और काम करती है।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> एक तेज़ सीपीयू का मतलब है एक तेज़ कंप्यूटर। यही कारण है कि कुछ कंप्यूटर गेमिंग के लिए बेहतर होते हैं (वे "सोच" तेज़ी से सकते हैं)।</p>`
+                        }
+                    },
+                    {
+                        slug: "hardware-software",
+                        title: "Concept of Hardware and Software",
+                        hindiTitle: "हार्डवेयर और सॉफ्टवेयर की अवधारणा",
+                        content: {
+                            english: `<p>This is the most important concept!</p>
+                                      <p><strong>Hardware:</strong> All the physical parts of a computer you can *see and touch*.</p>
+                                      <p><strong>Examples:</strong> The Monitor, Keyboard, Mouse, and all the wires.</p>
+                                      
+                                      <p><strong>Software:</strong> All the programs and instructions you *cannot* touch.</p>
+                                      <p><strong>Examples:</strong> Windows, MS Paint, your game, Google Chrome.</p>
+                                      
+                                      <p><strong>Real Example:</strong> Your body is your *hardware*. Your thoughts, feelings, and "you" are your *software*.</p>`,
+                            hindi: `<p class="hindi">यह सबसे महत्वपूर्ण अवधारणा है!</p>
+                                    <p class="hindi"><strong>हार्डवेयर:</strong> कंप्यूटर के सभी भौतिक भाग जिन्हें आप *देख और छू* सकते हैं।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> मॉनिटर, कीबोर्ड, माउस, और सभी तार।</p>
+                                    
+                                    <p class="hindi"><strong>सॉफ्टवेयर:</strong> सभी प्रोग्राम और निर्देश जिन्हें आप *छू नहीं* सकते।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> विंडोज, एमएस पेंट, आपका गेम, गूगल क्रोम।</p>
+                                    
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> आपका शरीर आपका *हार्डवेयर* है। आपके विचार, भावनाएं, और "आप" आपका *सॉफ्टवेयर* हैं।</p>`
+                        }
+                    },
+                    {
+                        slug: "types-of-software",
+                        title: "Basics of Types of Software",
+                        hindiTitle: "सॉफ्टवेयर के प्रकारों की मूल बातें",
+                        content: {
+                            english: `<p><strong>1. System Software (The "Boss"):</strong></p>
+                                      <p>This is the main software that runs the computer. The computer cannot even start without it.</p>
+                                      <p><strong>Example:</strong> <strong>Microsoft Windows</strong>. It's the "boss" that manages everything.</p>
+                                      
+                                      <p><strong>2. Application Software (The "Workers"):</strong></p>
+                                      <p>These are the "apps" you use to do specific jobs.</p>
+                                      <p><strong>Examples:</strong> <strong>MS Paint</strong> (for drawing), <strong>MS Word</strong> (for writing), <strong>Google Chrome</strong> (for internet).</p>`,
+                            hindi: `<p class="hindi"><strong>1. सिस्टम सॉफ्टवेयर ("बॉस"):</strong></p>
+                                    <p class="hindi">यह मुख्य सॉफ्टवेयर है जो कंप्यूटर को चलाता है। इसके बिना कंप्यूटर शुरू भी नहीं हो सकता।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> <strong>माइक्रोसॉफ्ट विंडोज</strong>। यह "बॉस" है जो सब कुछ प्रबंधित करता है।</p>
+                                    
+                                    <p class="hindi"><strong>2. एप्लीकेशन सॉफ्टवेयर ("कार्यकर्ता"):</strong></p>
+                                    <p class="hindi">ये वे "ऐप्स" हैं जिनका उपयोग आप विशिष्ट कार्यों को करने के लिए करते हैं।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> <strong>एमएस पेंट</strong> (ड्राइंग के लिए), <strong>एमएस वर्ड</strong> (लिखने के लिए), <strong>गूगल क्रोम</strong> (इंटरनेट के लिए)।</p>`
+                        }
+                    },
+                    {
+                        slug: "file-folder",
+                        title: "Concept of File/Folder",
+                        hindiTitle: "फ़ाइल/फ़ोल्डर की अवधारणा",
+                        content: {
+                            english: `<p><strong>File:</strong> A file is a single piece of your work.</p>
+                                      <p><strong>Examples:</strong> Your drawing in Paint, a song, a photo, your homework document.</p>
+                                      
+                                      <p><strong>Folder:</strong> A folder is like a "bag" or "drawer" used to *organize* your files.</p>
+                                      <p><strong>Real Example:</strong> You create a folder called <strong>"Homework"</strong>. Inside it, you put your <strong>"Math.docx"</strong> file and your <strong>"Science.docx"</strong> file. This keeps your desk tidy!</p>`,
+                            hindi: `<p class="hindi"><strong>फ़ाइल:</strong> एक फ़ाइल आपके काम का एक टुकड़ा है।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> पेंट में आपकी ड्राइंग, एक गाना, एक तस्वीर, आपका होमवर्क दस्तावेज़।</p>
+                                    
+                                    <p class="hindi"><strong>फ़ोल्डर:</strong> एक फ़ोल्डर एक "बैग" या "दराज" की तरह होता है जिसका उपयोग आपकी फ़ाइलों को *व्यवस्थित* करने के लिए किया जाता है।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> आप <strong>"होमवर्क"</strong> नामक एक फ़ोल्डर बनाते हैं। इसके अंदर, आप अपनी <strong>"Math.docx"</strong> फ़ाइल और अपनी <strong>"Science.docx"</strong> फ़ाइल डालते हैं। यह आपकी डेस्क को साफ-सुथरा रखता है!</p>`
+                        }
+                    },
+                    {
+                        slug: "file-operations",
+                        title: "Creating/moving/deleting files and folders",
+                        hindiTitle: "फ़ाइलें और फ़ोल्डर बनाना/स्थानांतरित करना/हटाना",
+                        content: {
+                            english: `<p>This is just like organizing papers on your desk.</p>
+                                      <ul>
+                                        <li><strong>Create:</strong> Right-click -> 'New' -> 'Folder' to make a new empty folder.</li>
+                                        <li><strong>Move (Cut & Paste):</strong> To move a file from one folder to another.</li>
+                                        <li><strong>Copy (Copy & Paste):</strong> To make a *duplicate* of a file.</li>
+                                        <li><strong>Delete:</strong> To throw a file in the Recycle Bin.</li>
+                                        <li><strong>Rename:</strong> To give your file a better name.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">यह आपकी डेस्क पर कागजों को व्यवस्थित करने जैसा है।</p>
+                                    <ul class="hindi">
+                                        <li><strong>बनाना (Create):</strong> एक नया खाली फ़ोल्डर बनाने के लिए राइट-क्लिक करें -> 'New' -> 'Folder'।</li>
+                                        <li><strong>स्थानांतरित करना (Move - Cut & Paste):</strong> एक फ़ाइल को एक फ़ोल्डर से दूसरे में ले जाने के लिए।</li>
+                                        <li><strong>कॉपी करना (Copy - Copy & Paste):</strong> एक फ़ाइल का *डुप्लिकेट* बनाने के लिए।</li>
+                                        <li><strong>हटाना (Delete):</strong> एक फ़ाइल को रीसायकल बिन में फेंकने के लिए।</li>
+                                        <li><strong>नाम बदलना (Rename):</strong> अपनी फ़ाइल को एक बेहतर नाम देने के लिए।</li>
+                                    </ul>`
+                        }
+                    }
+                ]
+            },
+            "unit-3": {
+                title: "Using Paint Brush",
+                hindiTitle: "पेंट ब्रश का उपयोग",
+                topics: [
+                    {
+                        slug: "intro-paint",
+                        title: "Introduction to Paint brush",
+                        hindiTitle: "पेंट ब्रश का परिचय",
+                        content: {
+                            english: `<p>MS Paint is a simple, fun app that works like a digital drawing book.</p>
+                                      <p>You can use it to make your own drawings, color pictures, or edit photos (like cropping them or adding text).</p>`,
+                            hindi: `<p class="hindi">एमएस पेंट एक सरल, मजेदार ऐप है जो एक डिजिटल ड्राइंग बुक की तरह काम करता है।</p>
+                                    <p class="hindi">आप इसका उपयोग अपनी खुद की ड्राइंग बनाने, चित्रों में रंग भरने, या तस्वीरों को संपादित करने (जैसे उन्हें क्रॉप करना या टेक्स्ट जोड़ना) के लिए कर सकते हैं।</p>`
+                        }
+                    },
+                    {
+                        slug: "paint-tools-1",
+                        title: "Pencil, Eraser, Fill with Color, Pick color",
+                        hindiTitle: "पेंसिल, इरेज़र, फिल विथ कलर, पिक कलर",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Pencil:</strong> Draws a thin, free-hand line, just like a real pencil.</li>
+                                <li><strong>Eraser:</strong> Rubs out any mistakes you make.</li>
+                                <li><strong>Fill with Color (The Paint Bucket):</strong> This is the magic tool! Draw a closed shape (like a circle) and use this to fill the *entire* inside with color in one click.</li>
+                                <li><strong>Pick Color (The Dropper):</strong> If you see a color you like on the screen, use this tool to "suck up" that color so you can use it.</li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>पेंसिल:</strong> एक असली पेंसिल की तरह, एक पतली, फ्री-हैंड लाइन खींचती है।</li>
+                                <li><strong>इरेज़र (रबर):</strong> आपकी किसी भी गलती को मिटा देता है।</li>
+                                <li><strong>फिल विथ कलर (पेंट बकेट):</strong> यह जादुई उपकरण है! एक बंद आकृति (जैसे एक वृत्त) बनाएं और एक क्लिक में *पूरे* अंदर को रंग से भरने के लिए इसका उपयोग करें।</li>
+                                <li><strong>पिक कलर (ड्रॉपर):</strong> यदि आप स्क्रीन पर कोई रंग देखते हैं जो आपको पसंद है, तो उस रंग को "चूसने" के लिए इस उपकरण का उपयोग करें ताकि आप उसका उपयोग कर सकें।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "paint-tools-2",
+                        title: "Brush, Air Brush, Selection tools",
+                        hindiTitle: "ब्रश, एयर ब्रश, सलेक्शन टूल्स",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Brush:</strong> Just like a real paintbrush. You can choose different styles, like an oil brush or a watercolor brush.</li>
+                                <li><strong>Airbrush:</strong> Works like a spray-paint can.</li>
+                                <li><strong>Selection Tools (The Magic Rope):</strong> These tools let you "select" or "grab" a part of your drawing. Once you grab it, you can move it, copy it, or delete it.
+                                    <ul>
+                                        <li><strong>Rectangular:</strong> Grabs a square area.</li>
+                                        <li><strong>Free-Form:</strong> Lets you draw around the part you want to grab.</li>
+                                    </ul>
+                                </li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>ब्रश:</strong> एक असली पेंटब्रश की तरह। आप विभिन्न शैलियों को चुन सकते हैं, जैसे एक तेल ब्रश या एक वॉटरकलर ब्रश।</li>
+                                <li><strong>एयरब्रश:</strong> एक स्प्रे-पेंट कैन की तरह काम करता है।</li>
+                                <li><strong>सलेक्शन टूल्स (जादुई रस्सी):</strong> ये उपकरण आपको अपनी ड्राइंग के एक हिस्से को "चुनने" या "पकड़ने" देते हैं। एक बार जब आप इसे पकड़ लेते हैं, तो आप इसे स्थानांतरित कर सकते हैं, कॉपी कर सकते हैं, या हटा सकते हैं।
+                                    <ul class="hindi">
+                                        <li><strong>आयताकार (Rectangular):</strong> एक चौकोर क्षेत्र को पकड़ता है।</li>
+                                        <li><strong>फ्री-फॉर्म:</strong> आपको उस हिस्से के चारों ओर आकर्षित करने देता है जिसे आप पकड़ना चाहते हैं।</li>
+                                    </ul>
+                                </li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "paint-view",
+                        title: "View menu: Zoom-in, Zoom-out, Full Screen",
+                        hindiTitle: "व्यू मेनू: ज़ूम-इन, ज़ूम-आउट, फुल स्क्रीन",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Zoom In:</strong> Like using a magnifying glass. It lets you get "closer" to your drawing to fix small details.</li>
+                                <li><strong>Zoom Out:</strong> Lets you step "back" to see your whole picture at once.</li>
+                                <li><strong>Full Screen:</strong> Shows your drawing on the entire monitor, hiding all the tools. (Press 'Esc' to exit).</li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>ज़ूम इन:</strong> एक आवर्धक कांच (magnifying glass) का उपयोग करने की तरह। यह आपको छोटे विवरणों को ठीक करने के लिए अपनी ड्राइंग के "करीब" जाने देता है।</li>
+                                <li><strong>ज़ूम आउट:</strong> आपको एक ही बार में अपनी पूरी तस्वीर देखने के लिए "पीछे" हटने देता है।</li>
+                                <li><strong>फुल स्क्रीन:</strong> आपकी ड्राइंग को पूरे मॉनिटर पर दिखाता है, सभी टूल को छुपाता है। (बाहर निकलने के लिए 'Esc' दबाएं)।</li>
+                                    </ul>`
+                        }
+                    }
+                ]
+            },
+            "unit-4": {
+                title: "Word processor",
+                hindiTitle: "वर्ड प्रोसेसर",
+                topics: [
+                    {
+                        slug: "intro-word",
+                        title: "Introduction to Word processor (MS Word, WordPad, LibreOffice Writer)",
+                        hindiTitle: "वर्ड प्रोसेसर का परिचय (एमएस वर्ड, वर्डपैड, लिब्रे ऑफिस राइटर)",
+                        content: {
+                            english: `<p>A <strong>Word Processor</strong> is a "digital notebook" or a "smart typewriter".</p>
+                                      <p>You use it to type letters, write school essays, or make your homework look neat and professional.</p>
+                                      <p><strong>Examples:</strong> Microsoft Word, Google Docs (which is online), or WordPad (a simpler one).</p>`,
+                            hindi: `<p class="hindi">एक <strong>वर्ड प्रोसेसर</strong> एक "डिजिटल नोटबुक" या एक "स्मार्ट टाइपराइटर" है।</p>
+                                    <p class="hindi">आप इसका उपयोग पत्र टाइप करने, स्कूल के निबंध लिखने, या अपने होमवर्क को साफ-सुथरा और पेशेवर दिखाने के लिए करते हैं।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> माइक्रोसॉफ्ट वर्ड, गूगल डॉक्स (जो ऑनलाइन है), या वर्डपैड (एक सरल)।</p>`
+                        }
+                    },
+                    {
+                        slug: "file-operations-word",
+                        title: "Creating, Saving, opening, editing, printing a file",
+                        hindiTitle: "फ़ाइल बनाना, सहेजना, खोलना, संपादित करना, प्रिंट करना",
+                        content: {
+                            english: `<ul>
+                                <li><strong>Creating:</strong> 'File' > 'New' to get a fresh blank page.</li>
+                                <li><strong>Saving:</strong> <strong>This is most important!</strong> Click 'File' > 'Save' (or press Ctrl + S). Give your homework a name. Save your work every 5 minutes!</li>
+                                <li><strong>Opening:</strong> 'File' > 'Open' to find and open the homework you saved yesterday.</li>
+                                <li><strong>Editing:</strong> Just click and type to add more, or use Backspace to fix mistakes.</li>
+                                <li><strong>Printing:</strong> 'File' > 'Print' to get a paper copy to give to your teacher.</li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                <li><strong>बनाना (Creating):</strong> एक ताजा खाली पेज पाने के लिए 'File' > 'New'।</li>
+                                <li><strong>सहेजना (Saving):</strong> <strong>यह सबसे महत्वपूर्ण है!</strong> 'File' > 'Save' पर क्लिक करें (या Ctrl + S दबाएं)। अपने होमवर्क को एक नाम दें। हर 5 मिनट में अपना काम सहेजें!</li>
+                                <li><strong>खोलना (Opening):</strong> 'File' > 'Open' से कल सहेजे गए होमवर्क को ढूंढें और खोलें।</li>
+                                <li><strong>संपादित करना (Editing):</strong> बस क्लिक करें और अधिक जोड़ने के लिए टाइप करें, या गलतियों को ठीक करने के लिए बैकस्पेस का उपयोग करें।</li>
+                                <li><strong>प्रिंटिंग (Printing):</strong> 'File' > 'Print' से अपने शिक्षक को देने के लिए एक कागजी प्रति प्राप्त करें।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "text-selection",
+                        title: "Selection of text in a document",
+                        hindiTitle: "दस्तावेज़ में टेक्स्ट का चयन",
+                        content: {
+                            english: `<p>You *must* select (highlight) text before you can change it (like change its color or make it bold).</p>
+                                      <p><strong>Real Example:</strong> It's like picking up a word with your hand *before* you can paint it a new color.</p>
+                                      <p><strong>How:</strong> Click and hold your left mouse button, then drag it over the text you want to select.</p>`,
+                            hindi: `<p class="hindi">इससे पहले कि आप टेक्स्ट को बदल सकें (जैसे उसका रंग बदलना या उसे बोल्ड करना), आपको उसे *चुनना* (हाइलाइट करना) होगा।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> यह किसी शब्द को एक नया रंग देने से *पहले* उसे अपने हाथ से उठाने जैसा है।</p>
+                                    <p class="hindi"><strong>कैसे:</strong> अपने बाएं माउस बटन को क्लिक करें और दबाए रखें, फिर उसे उस टेक्स्ट पर खींचें जिसे आप चुनना चाहते हैं।</p>`
+                        }
+                    },
+                    {
+                        slug: "move-copy-text",
+                        title: "Move and Copy text in a document",
+                        hindiTitle: "दस्तावेज़ में टेक्स्ट को मूव और कॉपी करना",
+                        content: {
+                            english: `<p><strong>Move (Cut and Paste):</strong></p>
+                                      <p>This *moves* your text. You "Cut" it from one place (it disappears) and "Paste" it somewhere else. (Ctrl+X, Ctrl+V).</p>
+                                      <p><strong>Copy (Copy and Paste):</strong></p>
+                                      <p>This makes a *duplicate*. You "Copy" the text (it stays) and then "Paste" the copy somewhere else. (Ctrl+C, Ctrl+V).</p>`,
+                            hindi: `<p class="hindi"><strong>मूव (कट और पेस्ट):</strong></p>
+                                    <p class="hindi">यह आपके टेक्स्ट को *स्थानांतरित* करता है। आप इसे एक स्थान से "कट" करते हैं (यह गायब हो जाता है) और इसे कहीं और "पेस्ट" करते हैं। (Ctrl+X, Ctrl+V)।</p>
+                                    <p class="hindi"><strong>कॉपी (कॉपी और पेस्ट):</strong></p>
+                                    <p class="hindi">यह एक *डुप्लिकेट* बनाता है। आप टेक्स्ट को "कॉपी" करते हैं (यह बना रहता है) और फिर कॉपी को कहीं और "पेस्ट" करते हैं। (Ctrl+C, Ctrl+V)।</p>`
+                        }
+                    },
+                    {
+                        slug: "find-replace",
+                        title: "Find and Replace text",
+                        hindiTitle: "टेक्स्ट को खोजना और बदलना",
+                        content: {
+                            english: `<p><strong>Find (Ctrl + F):</strong></sTRONG> A magic tool to find one word in a huge 10-page document instantly.</p>
+                                      <p><strong>Replace (Ctrl + H):</strong> Even more magic! <strong>Real Example:</strong> Imagine you wrote a story about "Rohan" but wanted it to be "Rohan". You can tell the computer to "Find" every "Rohan" and "Replace" it with "Rohan" automatically!</p>`,
+                            hindi: `<p class="hindi"><strong>खोजना (Find) (Ctrl + F):</strong></sTRONG> एक विशाल 10-पृष्ठ के दस्तावेज़ में एक शब्द को तुरंत खोजने के लिए एक जादुई उपकरण।</p>
+                                    <p class="hindi"><strong>बदलना (Replace) (Ctrl + H):</strong> और भी अधिक जादू! <strong>असली उदाहरण:</strong> कल्पना कीजिए कि आपने "रोहन" के बारे में एक कहानी लिखी है, लेकिन आप चाहते थे कि वह "रोहन" हो। आप कंप्यूटर को हर "रोहन" को "ढूंढने" और उसे "रोहन" से स्वचालित रूप से "बदलने" के लिए कह सकते हैं!</p>`
+                        }
+                    },
+                    {
+                        slug: "font-formatting",
+                        title: "Formatting fonts (Font Size, color, sub-super script, bold, italic, underline)",
+                        hindiTitle: "फ़ॉन्ट फॉर्मेटिंग (फ़ॉन्ट साइज़, रंग, सब-सुपर स्क्रिप्ट, बोल्ड, इटैलिक, अंडरलाइन)",
+                        content: {
+                            english: `<p>This is how you make your text look good!</p>
+                                      <ul>
+                                        <li><strong>Font Size/Color:</strong> Make text bigger, smaller, or change its color.</li>
+                                        <li><strong>Bold (B):</strong> Makes text <strong>darker</strong> for headings.</li>
+                                        <li><strong>Italic (I):</strong> Makes text <em>slanted</em>.</li>
+                                        <li><strong>Underline (U):</strong> <u>Puts a line</u> under text.</li>
+                                        <li><strong>Sub/Superscript:</strong> For science and math! <strong>Subscript</strong> is low (H<sub>2</sub>O). <strong>Superscript</strong> is high (10<sup>th</sup>).</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">इस तरह आप अपने टेक्स्ट को अच्छा दिखाते हैं!</p>
+                                    <ul class="hindi">
+                                        <li><strong>फ़ॉन्ट साइज़/कलर:</strong> टेक्स्ट को बड़ा, छोटा, या उसका रंग बदलें।</li>
+                                        <li><strong>बोल्ड (B):</strong> शीर्षकों के लिए टेक्स्ट को <strong>गहरा</strong> बनाता है।</li>
+                                        <li><strong>इटैलिक (I):</strong> टेक्स्ट को <em>तिरछा</em> बनाता है।</li>
+                                        <li><strong>अंडरलाइन (U):</strong> टेक्स्ट के <u>नीचे एक रेखा</u> खींचता है।</li>
+                                        <li><strong>सब/सुपरस्क्रिप्ट:</strong> विज्ञान और गणित के लिए! <strong>सबस्क्रिप्ट</strong> नीचा होता है (H<sub>2</sub>O)। <strong>सुपरस्क्रिप्ट</strong> ऊंचा होता है (10<sup>th</sup>)।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "spell-check",
+                        title: "Checking Spelling (Automatic and Manual)",
+                        hindiTitle: "वर्तनी जांचना (स्वचालित और मैनुअल)",
+                        content: {
+                            english: `<p>It's like having a spelling teacher inside your computer!</p>
+                                      <p><strong>Red Wavy Line:</strong> You probably misspelled a word! Right-click on it to see the correct spelling.</p>
+                                      <p><strong>Blue Wavy Line:</strong> You made a grammar mistake. (<strong>Example:</strong> "I is happy" instead of "I *am* happy").</p>
+                                      <p><strong>Manual Check (F7 key):</strong> You can run a full check of the whole document when you are finished.</p>`,
+                            hindi: `<p class="hindi">यह आपके कंप्यूटर के अंदर एक वर्तनी शिक्षक होने जैसा है!</p>
+                                    <p class="hindi"><strong>लाल लहरदार रेखा:</strong> आपने शायद एक शब्द की वर्तनी गलत लिखी है! सही वर्तनी देखने के लिए उस पर राइट-क्लिक करें।</p>
+                                    <p class="hindi"><strong>नीली लहरदार रेखा:</strong> आपने एक व्याकरण संबंधी गलती की है। (<strong>उदाहरण:</strong> "I is happy" के बजाय "I *am* happy")।</p>
+                                    <p class="hindi"><strong>मैनुअल जांच (F7 कुंजी):</strong> जब आप समाप्त कर लें तो आप पूरे दस्तावेज़ की पूरी जांच चला सकते हैं।</p>`
+                        }
+                    },
+                    {
+                        slug: "paragraph-formatting",
+                        title: "Alignment, Numbering and bullets, Change case",
+                        hindiTitle: "संरेखण (Alignment), नंबरिंग और बुलेट, केस बदलना",
+                        content: {
+                            english: `<ul>
+                                        <li><strong>Alignment:</strong> How your text lines up.
+                                            <ul>
+                                                <li><strong>Left:</strong> Normal for writing.</li>
+                                                <li><strong>Center:</strong> Best for titles and headings!</li>
+                                                <li><strong>Right:</strong> Used for dates.</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Numbering and Bullets:</strong> For making lists.
+                                            <ul>
+                                                <li><strong>Bullets (•):</strong> For a shopping list (• Milk, • Eggs).</li>
+                                                <li><strong>Numbering (1.):</strong> For steps in a recipe (1. Boil water, 2. Add noodles).</li>
+                                            </ul>
+                                        </li>
+                                      </ul>`,
+                            hindi: `<ul class="hindi">
+                                        <li><strong>संरेखण (Alignment):</strong> आपका टेक्स्ट कैसे पंक्तिबद्ध होता है।
+                                            <ul class="hindi">
+                                                <li><strong>लेफ्ट:</strong> लिखने के लिए सामान्य।</li>
+                                                <li><strong>सेंटर:</strong> शीर्षकों और हेडिंग के लिए सर्वश्रेष्ठ!</li>
+                                                <li><strong>राइट:</strong> तारीखों के लिए प्रयुक्त।</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>नंबरिंग और बुलेट:</strong> सूचियाँ बनाने के लिए।
+                                            <ul class="hindi">
+                                                <li><strong>बुलेट (•):</strong> एक खरीदारी सूची के लिए (• दूध, • अंडे)।</li>
+                                                <li><strong>नंबरिंग (1.):</strong> एक रेसिपी में चरणों के लिए (1. पानी उबालें, 2. नूडल्स डालें)।</li>
+                                            </ul>
+                                        </li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "inserting-objects",
+                        title: "Inserting symbols, pictures, Word Art, Page break, images, Clip art, date/time, text box, page numbers",
+                        hindiTitle: "प्रतीक, चित्र, वर्ड आर्ट, पेज ब्रेक, क्लिप आर्ट, दिनांक/समय, टेक्स्ट बॉक्स, पेज नंबर डालना",
+                        content: {
+                            english: `<p>Go to the <strong>'Insert' tab</strong> to add cool things to your page.</p>
+                                      <ul>
+                                        <li><strong>Pictures/Images:</strong> Add a photo from your computer (like a family picture).</li>
+                                        <li><strong>WordArt:</strong> Makes your titles look fancy and stylish.</li>
+                                        <li><strong>Page Numbers:</strong> Automatically puts a number on every page. Very useful for long homework!</li>
+                                        <li><strong>Symbols:</strong> Add special characters like ©, ™, or ₹.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">अपने पेज पर शानदार चीजें जोड़ने के लिए <strong>'Insert' टैब</strong> पर जाएं।</p>
+                                    <ul class="hindi">
+                                        <li><strong>पिक्चर्स/इमेजेज:</strong> अपने कंप्यूटर से एक तस्वीर जोड़ें (जैसे एक पारिवारिक तस्वीर)।</li>
+                                        <li><strong>वर्डआर्ट:</strong> आपके शीर्षकों को फैंसी और स्टाइलिश बनाता है।</li>
+                                        <li><strong>पेज नंबर:</strong> हर पेज पर स्वचालित रूप से एक नंबर डालता है। लंबे होमवर्क के लिए बहुत उपयोगी!</li>
+                                        <li><strong>प्रतीक (Symbols):</strong> ©, ™, या ₹ जैसे विशेष वर्ण जोड़ें।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "hindi-typing",
+                        title: "Hindi typing",
+                        hindiTitle: "हिंदी टाइपिंग",
+                        content: {
+                            english: `<p>You can set up your computer to type in Hindi!</p>
+                                      <p>You can add the 'Hindi' language in your computer's Settings. Then, you can switch between "ENG" and "HIN" on your taskbar.</p>
+                                      <p>When "HIN" is on, you can type Hindi letters (नमस्ते) using your normal English keyboard. This is called a 'phonetic' keyboard.</p>`,
+                            hindi: `<p class="hindi">आप अपने कंप्यूटर को हिंदी में टाइप करने के लिए सेट कर सकते हैं!</p>
+                                    <p class="hindi">आप अपने कंप्यूटर की सेटिंग्स में 'हिंदी' भाषा जोड़ सकते हैं। फिर, आप अपने टास्कबार पर "ENG" और "HIN" के बीच स्विच कर सकते हैं।</p>
+                                    <p class="hindi">जब "HIN" चालू होता है, तो आप अपने सामान्य अंग्रेजी कीबोर्ड का उपयोग करके हिंदी अक्षर (नमस्ते) टाइप कर सकते हैं। इसे 'फोनेटिक' कीबोर्ड कहा जाता है।</p>`
+                        }
+                    }
+                ]
+            },
+            "unit-5": {
+                title: "Internet",
+                hindiTitle: "इंटरनेट",
+                topics: [
+                    {
+                        slug: "what-is-internet",
+                        title: "What is internet",
+                        hindiTitle: "इंटरनेट क्या है",
+                        content: {
+                            english: `<p>The <strong>Internet</strong> is a giant, worldwide web that connects millions of computers, phones, and other devices.</p>
+                                      <p><strong>Real Example:</strong> It's what lets you send a WhatsApp message to your friend, watch a YouTube video, or play an online game with people in other countries. It connects *everyone*.</p>`,
+                            hindi: `<p class="hindi"><strong>इंटरनेट</strong> एक विशाल, विश्वव्यापी वेब है जो लाखों कंप्यूटरों, फोनों और अन्य उपकरणों को जोड़ता है।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> यह वही है जो आपको अपने दोस्त को व्हाट्सएप संदेश भेजने, यूट्यूब वीडियो देखने, या अन्य देशों के लोगों के साथ ऑनलाइन गेम खेलने देता है। यह *सभी* को जोड़ता है।</p>`
+                        }
+                    },
+                    {
+                        slug: "need-requirements",
+                        title: "Need of Internet, requirements of internet connection",
+                        hindiTitle: "इंटरनेट की आवश्यकता, इंटरनेट कनेक्शन की आवश्यकताएं",
+                        content: {
+                            english: `<p><strong>Why we need it:</strong></p>
+                                      <ul>
+                                          <li><strong>Communication:</strong> To chat (WhatsApp), email, or video call.</li>
+                                          <li><strong>Information:</strong> To learn anything on Google.</li>
+                                          <li><strong>Entertainment:</strong> To watch movies, listen to songs, play games.</li>
+                                      </ul>
+                                      <p><strong>What you need to connect:</strong></p>
+                                      <ol>
+                                          <li>A device (like a computer or phone).</li>
+                                          <li>A <strong>Modem/Router</strong> (the box from your internet company).</li>
+                                          <li>An <strong>ISP</strong> (the company itself, like Jio, Airtel, or BSNL).</li>
+                                      </ol>`,
+                            hindi: `<p class="hindi"><strong>हमें इसकी आवश्यकता क्यों है:</strong></p>
+                                    <ul class="hindi">
+                                        <li><strong>संचार:</strong> चैट (व्हाट्सएप), ईमेल, या वीडियो कॉल करने के लिए।</li>
+                                        <li><strong>सूचना:</strong> गूगल पर कुछ भी सीखने के लिए।</li>
+                                        <li><strong>मनोरंजन:</strong> फिल्में देखने, गाने सुनने, गेम खेलने के लिए।</li>
+                                    </ul>
+                                    <p class="hindi"><strong>कनेक्ट करने के लिए आपको क्या चाहिए:</strong></p>
+                                    <ol class="hindi">
+                                        <li>एक डिवाइस (जैसे कंप्यूटर या फोन)।</li>
+                                        <li>एक <strong>मोडेम/राउटर</strong> (आपकी इंटरनेट कंपनी का बक्सा)।</li>
+                                        <li>एक <strong>आईएसपी (ISP)</strong> (कंपनी खुद, जैसे जियो, एयरटेल, या बीएसएनएल)।</li>
+                                    </ol>`
+                        }
+                    },
+                    {
+                        slug: "search-engines",
+                        title: "Search engines and opening and closing",
+                        hindiTitle: "सर्च इंजन और खोलना और बंद करना",
+                        content: {
+                            english: `<p>A <strong>Search Engine</strong> is the "library" of the internet. It helps you find anything.</p>
+                                      <p><strong>Example:</strong> <strong>Google</strong> is the most famous search engine.</p>
+                                      <p><strong>How to use it:</strong></p>
+                                      <ol>
+                                          <li>Open your browser (like Chrome).</li>
+                                          <li>Type 'www.google.com'.</li>
+                                          <li>In the search box, type your question (e.g., "capital of India" or "best mango farmer") and press Enter.</li>
+                                          <li>It will give you a list of answers in one second!</li>
+                                      </ol>`,
+                            hindi: `<p class="hindi">एक <strong>सर्च इंजन</strong> इंटरनेट की "लाइब्रेरी" है। यह आपको कुछ भी खोजने में मदद करती है।</p>
+                                    <p class="hindi"><strong>उदाहरण:</strong> <strong>Google</strong> सबसे प्रसिद्ध सर्च इंजन है।</p>
+                                    <p class="hindi"><strong>इसका उपयोग कैसे करें:</strong></p>
+                                    <ol class="hindi">
+                                        <li>अपना ब्राउज़र (जैसे क्रोम) खोलें।</li>
+                                        <li>'www.google.com' टाइप करें।</li>
+                                        <li>सर्च बॉक्स में, अपना प्रश्न टाइप करें (जैसे, "भारत की राजधानी" या "सबसे अच्छा आम किसान") और एंटर दबाएं।</li>
+                                        <li>यह आपको एक सेकंड में उत्तरों की एक सूची देगा!</li>
+                                    </ol>`
+                        }
+                    }
+                ]
+            },
+            "unit-6": {
+                title: "Working with Applications Software",
+                hindiTitle: "एप्लीकेशन सॉफ्टवेयर के साथ काम करना",
+                topics: [
+                    {
+                        slug: "intro-spreadsheet",
+                        title: "Introduction to Spreadsheets (Excel, LibreOffice Calc)",
+                        hindiTitle: "स्प्रेडशीट का परिचय (एक्सेल, लिब्रे ऑफिस कैल्क)",
+                        content: {
+                            english: `<p>A <strong>Spreadsheet</strong> is a "magic math notebook".</p>
+                                      <p><strong>Example: MS Excel</strong>. It's a big page full of boxes called <strong>Cells</strong>. You put numbers in the cells.</p>
+                                      <p><strong>Real Example:</strong> Your teacher uses this to make your class <strong>timetable</strong> or your <strong>marksheet</strong>.</p>`,
+                            hindi: `<p class="hindi">एक <strong>स्प्रेडशीट</strong> एक "जादुई गणित नोटबुक" है।</p>
+                                    <p class="hindi"><strong>उदाहरण: एमएस एक्सेल</strong>। यह <strong>सेल्स</strong> नामक बक्सों से भरा एक बड़ा पेज है। आप सेलों में नंबर डालते हैं।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> आपके शिक्षक इसका उपयोग आपकी कक्षा का <strong>टाइमटेबल</strong> या आपकी <strong>मार्कशीट</strong> बनाने के लिए करते हैं।</p>`
+                        }
+                    },
+                    {
+                        slug: "basic-formulas",
+                        title: "Preparation of simple worksheet with basic formula +, -, *, /",
+                        hindiTitle: "मूल सूत्रों +, -, *, / के साथ सरल वर्कशीट तैयार करना",
+                        content: {
+                            english: `<p>This is the best part of Excel! It can do your math for you.</p>
+                                      <p>All formulas must start with an <strong>equals sign (=)</strong>.</p>
+                                      <p><strong>Real Example:</strong></p>
+                                      <ul>
+                                          <li>In cell A1, type <strong>50</strong> (your Hindi marks).</li>
+                                          <li>In cell A2, type <strong>80</strong> (your Math marks).</li>
+                                          <li>In cell A3, type the formula: <strong>=A1+A2</strong></li>
+                                          <li>When you press Enter, cell A3 will *automatically* show <strong>130</strong>! If you change your marks, the total will update instantly.</li>
+                                          <li>Use <strong>-</strong> for minus, <strong>*</strong> for multiply, and <strong>/</strong> for divide.</li>
+                                      </ul>`,
+                            hindi: `<p class="hindi">यह एक्सेल का सबसे अच्छा हिस्सा है! यह आपके लिए आपका गणित कर सकता है।</p>
+                                    <p class="hindi">सभी सूत्र <strong>बराबर चिह्न (=)</strong> से शुरू होने चाहिए।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong></p>
+                                    <ul class="hindi">
+                                        <li>सेल A1 में, <strong>50</strong> टाइप करें (आपके हिंदी के अंक)।</li>
+                                        <li>सेल A2 में, <strong>80</strong> टाइप करें (आपके गणित के अंक)।</li>
+                                        <li>सेल A3 में, सूत्र टाइप करें: <strong>=A1+A2</strong></li>
+                                        <li>जब आप एंटर दबाते हैं, तो सेल A3 *स्वचालित रूप से* <strong>130</strong> दिखाएगा! यदि आप अपने अंक बदलते हैं, तो कुल तुरंत अपडेट हो जाएगा।</li>
+                                        <li>घटाने के लिए <strong>-</strong>, गुणा के लिए <strong>*</strong>, और भाग के लिए <strong>/</strong> का उपयोग करें।</li>
+                                    </ul>`
+                        }
+                    },
+                    {
+                        slug: "intro-presentation",
+                        title: "Introduction to presentation tools (MS PowerPoint, LibreOffice Impress)",
+                        hindiTitle: "प्रेजेंटेशन टूल्स का परिचय (एमएस पावरपॉइंट, लिब्रे ऑफिस इम्प्रेस)",
+                        content: {
+                            english: `<p>This is software used to make a "digital slideshow".</p>
+                                      <p><strong>Example: MS PowerPoint</strong>. You make many pages, called <strong>Slides</strong>, to explain a topic to your class.</p>
+                                      <p><strong>Real Example:</strong> Instead of just reading your homework, you can make a PowerPoint with pictures and titles. It's much more interesting for the class to watch!</p>`,
+                            hindi: `<p class="hindi">यह "डिजिटल स्लाइडशो" बनाने के लिए इस्तेमाल किया जाने वाला सॉफ्टवेयर है।</p>
+                                    <p class="hindi"><strong>उदाहरण: एमएस पावरपॉइंट</strong>। आप अपनी कक्षा को एक विषय समझाने के लिए कई पेज बनाते हैं, जिन्हें <strong>स्लाइड्स</strong> कहा जाता है।</p>
+                                    <p class="hindi"><strong>असली उदाहरण:</strong> सिर्फ अपना होमवर्क पढ़ने के बजाय, आप तस्वीरों और शीर्षकों के साथ एक पावरपॉइंट बना सकते हैं। यह कक्षा के लिए देखने में बहुत अधिक दिलचस्प है!</p>`
+                        }
+                    },
+                    {
+                        slug: "create-presentation",
+                        title: "Creating Simple Presentation",
+                        hindiTitle: "सरल प्रेजेंटेशन बनाना",
+                        content: {
+                            english: `<p><strong>Rule: Keep it simple!</strong></p>
+                                      <ol>
+                                          <li>Open PowerPoint and choose a design (a 'Theme').</li>
+                                          <li>The first slide is your <strong>Title Slide</strong> (e.g., "All About Mangoes").</li>
+                                          <li>Click 'New Slide' to add more slides.</li>
+                                          <li><strong>Golden Rule:</strong> Don't put too much text! Use *one* picture and *3-4 bullet points* per slide. The slide should support you, not replace you.</li>
+                                          <li>Press <strong>F5</strong> to play your slideshow!</li>
+                                      </ol>`,
+                            hindi: `<p class="hindi"><strong>नियम: इसे सरल रखें!</strong></p>
+                                    <ol class="hindi">
+                                        <li>पावरपॉइंट खोलें और एक डिज़ाइन ('थीम') चुनें।</li>
+                                        <li>पहली स्लाइड आपकी <strong>टाइटल स्लाइड</strong> है (जैसे, "आमों के बारे में सब कुछ")।</li>
+                                        <li>अधिक स्लाइड जोड़ने के लिए 'नई स्लाइड' पर क्लिक करें।</li>
+                                        <li><strong>सुनहरा नियम:</strong> बहुत अधिक टेक्स्ट न डालें! प्रति स्लाइड *एक* तस्वीर और *3-4 बुलेट पॉइंट* का उपयोग करें। स्लाइड को आपका समर्थन करना चाहिए, आपकी जगह नहीं लेनी चाहिए।</li>
+                                        <li>अपना स्लाइडशो चलाने के लिए <strong>F5</strong> दबाएं!</li>
+                                    </ol>`
+                        }
+                    }
+                ]
+            }
+        };
+
+        // --- GEMINI API SETUP ---
+        const GEMINI_MODEL = "gemini-2.5-flash-preview-09-2025";
+        const API_KEY = ""; // Kept empty as per instructions
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`;
+
+        // Helper for exponential backoff (for fetch)
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Global elements for the LLM feature
+        const geminiQueryInput = document.getElementById('gemini-query');
+        const askGeminiBtn = document.getElementById('ask-gemini-btn');
+        const geminiResponseArea = document.getElementById('gemini-response-area');
+        const geminiResponseText = document.getElementById('gemini-response-text');
+        const geminiLoading = document.getElementById('gemini-loading');
+
+        // --- LLM Core Function ---
+        async function askGeminiForHelp() {
+            const userQuestion = geminiQueryInput.value.trim();
+            if (!userQuestion) return;
+
+            // Get current topic title for context
+            const topicTitle = topicExplanationTitleEn.textContent;
+            
+            // UI state: Disable button, show loading
+            askGeminiBtn.disabled = true;
+            geminiResponseArea.classList.remove('hidden');
+            geminiResponseText.classList.add('hidden');
+            geminiLoading.classList.remove('hidden');
+            geminiResponseText.innerHTML = ''; // Clear previous response
+            geminiQueryInput.value = ''; // Clear input
+
+            const systemPrompt = `You are a friendly, enthusiastic, and knowledgeable Computer Science Tutor explaining concepts to a 6th-grade student. Your goal is to simplify complex ideas, use real-world, relatable analogies (like comparing the CPU to a brain or RAM to a desk), and keep the answer brief (max 3 sentences). The student is currently studying the topic: "${topicTitle}".`;
+            
+            const userQuery = `Regarding the topic "${topicTitle}", the student asks: "${userQuestion}"`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                // Use Google Search grounding to answer arbitrary questions accurately
+                tools: [{ "google_search": {} }], 
+            };
+
+            let responseJson = null;
+            let retries = 0;
+            const maxRetries = 3;
+            let delay = 1000;
+
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(GEMINI_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.status === 429) { // Rate limit handling
+                        retries++;
+                        await sleep(delay);
+                        delay *= 2; // Exponential backoff
+                        continue;
+                    }
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
+                    responseJson = await response.json();
+                    break; // Success
+                } catch (error) {
+                    console.error("Fetch failed, retrying...", error);
+                    retries++;
+                    await sleep(delay);
+                    delay *= 2;
+                }
+            }
+
+            // UI state: Hide loading, re-enable button
+            geminiLoading.classList.add('hidden');
+            askGeminiBtn.disabled = false;
+            geminiResponseText.classList.remove('hidden');
+
+            if (responseJson && responseJson.candidates && responseJson.candidates.length > 0) {
+                const generatedText = responseJson.candidates[0].content.parts[0].text;
+                geminiResponseText.innerHTML = `<span class="font-bold text-indigo-700">Tutor's Answer:</span> ${generatedText}`;
+            } else {
+                geminiResponseText.innerHTML = `<span class="font-bold text-red-600">Error:</span> Sorry, I couldn't find an answer right now. Please try asking a different question!`;
+            }
+        }
+
+        // --- APP LOGIC ---
+
+        let currentPageId = 'page-landing';
+        let currentUnitId = null; // To remember which unit we are in (for the back button)
+        let activeLang = 'en';
+
+        // Get all page elements
+        const pages = {
+            landing: document.getElementById('page-landing'),
+            mainMenu: document.getElementById('page-main-menu'),
+            unitDetail: document.getElementById('page-unit-detail'),
+            topicExplanation: document.getElementById('page-topic-explanation')
+        };
+        
+        // Get dynamic content containers
+        const unitDetailList = document.getElementById('unit-detail-list');
+        const unitDetailTitleEn = document.getElementById('unit-detail-title-en');
+        const unitDetailTitleHi = document.getElementById('unit-detail-title-hi');
+        
+        const topicExplanationTitleEn = document.getElementById('topic-explanation-title-en');
+        const topicExplanationTitleHi = document.getElementById('topic-explanation-title-hi');
+        const contentEn = document.getElementById('content-en');
+        const contentHi = document.getElementById('content-hi');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+
+        // --- Navigation Function ---
+        function showPage(pageId) {
+            // Hide all pages
+            for (let key in pages) {
+                pages[key].classList.remove('active');
+            }
+            // Show the target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                currentPageId = pageId;
+                window.scrollTo(0, 0); // Scroll to top on page change
+            } else {
+                console.error("Page not found:", pageId);
+            }
+        }
+        
+        // --- Content Builder Functions ---
+
+        // 1. Build the list of topics for a unit
+        function showUnitDetail(unitId) {
+            currentUnitId = unitId; // Remember this unit
+            const unit = appData[unitId];
+            if (!unit) return;
+
+            // Set titles
+            unitDetailTitleEn.textContent = unit.title;
+            unitDetailTitleHi.textContent = unit.hindiTitle;
+            
+            // Clear previous topic list
+            unitDetailList.innerHTML = '';
+            
+            // Create and append topic cards
+            unit.topics.forEach(topic => {
+                const topicCard = document.createElement('button');
+                topicCard.className = "topic-card text-left p-4 bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors duration-200 w-full";
+                topicCard.setAttribute('data-unit-id', unitId);
+                topicCard.setAttribute('data-topic-slug', topic.slug);
+                
+                topicCard.innerHTML = `
+                    <h3 class="text-lg font-semibold text-blue-700">${topic.title}</h3>
+                    <p class="hindi text-md font-medium text-gray-700">${topic.hindiTitle}</p>
+                `;
+                unitDetailList.appendChild(topicCard);
+            });
+            
+            showPage('page-unit-detail');
+        }
+
+        // 2. Build the explanation for a topic
+        function showTopicExplanation(unitId, topicSlug) {
+            const unit = appData[unitId];
+            const topic = unit ? unit.topics.find(t => t.slug === topicSlug) : null;
+            if (!topic) return;
+
+            // Set titles
+            topicExplanationTitleEn.textContent = topic.title;
+            topicExplanationTitleHi.textContent = topic.hindiTitle;
+            
+            // Set content
+            contentEn.innerHTML = topic.content.english;
+            contentHi.innerHTML = topic.content.hindi;
+            
+            // Reset to English tab and clear LLM area
+            switchTab('en');
+            geminiResponseArea.classList.add('hidden');
+            geminiResponseText.innerHTML = '';
+            geminiQueryInput.value = '';
+
+            showPage('page-topic-explanation');
+        }
+
+        // 3. Handle language tab switching
+        function switchTab(lang) {
+            activeLang = lang;
+            if (lang === 'en') {
+                contentEn.classList.remove('hidden');
+                contentHi.classList.add('hidden');
+            } else {
+                contentEn.classList.add('hidden');
+                contentHi.classList.remove('hidden');
+            }
+            
+            tabButtons.forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Start Button
+            document.getElementById('start-btn').addEventListener('click', () => {
+                showPage('page-main-menu');
+            });
+
+            // Back to Main Menu Button
+            document.getElementById('back-to-main-menu').addEventListener('click', () => {
+                showPage('page-main-menu');
+            });
+            
+            // Back to Unit Detail Button
+            document.getElementById('back-to-unit-detail').addEventListener('click', () => {
+                if (currentUnitId) {
+                    showUnitDetail(currentUnitId);
+                } else {
+                    showPage('page-main-menu'); // Fallback
+                }
+            });
+
+            // --- Event Delegation for Dynamic Content ---
+
+            // Clicks on Unit Cards (Main Menu)
+            document.getElementById('main-menu-container').addEventListener('click', (e) => {
+                const unitCard = e.target.closest('.unit-card');
+                if (unitCard) {
+                    const unitId = unitCard.dataset.unitId;
+                    showUnitDetail(unitId);
+                }
+            });
+
+            // Clicks on Topic Cards (Unit Detail Page)
+            document.getElementById('unit-detail-list').addEventListener('click', (e) => {
+                const topicCard = e.target.closest('.topic-card');
+                if (topicCard) {
+                    const unitId = topicCard.dataset.unitId;
+                    const topicSlug = topicCard.dataset.topicSlug;
+                    showTopicExplanation(unitId, topicSlug);
+                }
+            });
+            
+            // Clicks on Language Tabs
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchTab(btn.dataset.lang);
+                });
+            });
+
+            // New LLM Feature Listener
+            askGeminiBtn.addEventListener('click', askGeminiForHelp);
+
+        });
+    </script>
+</body>
+</html>
